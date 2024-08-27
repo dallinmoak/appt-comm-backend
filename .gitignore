@@ -1,3 +1,9 @@
 node_modules
 dist
 *.env
+
+.github/workflows
+
+.dockerignore
+Dockerfile
+fly.toml

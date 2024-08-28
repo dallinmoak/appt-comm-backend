@@ -1,0 +1,7 @@
+@devHost = http://localhost:3000
+@prodHost = https://appt-comm-backend.fly.dev
+
+### ROOT
+GET {{devHost}}
+###
+GET {{prodHost}}

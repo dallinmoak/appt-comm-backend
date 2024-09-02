@@ -5,3 +5,6 @@
 GET {{devHost}}
 ###
 GET {{prodHost}}
+
+### TYPE
+GET {{devHost}}/types/66cfaed70e27b2d699bb2a46

@@ -19,5 +19,16 @@ app.get("/", async (req, res) => {
     res.status(500).send("Error");
   }
 });
+app.get("/types/:id", async (req, res) => {
+  try {
+    const type = await CommTypesModel.findById(req.params.id);
+    console.log("type", type);
+    const templates = await type.getTemplates();
+    console.log("templates", templates);
+    res.send({ ...type._doc, templates });
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 app.listen(3000, () => console.log(`Server listening`));

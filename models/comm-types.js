@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import TemplatesModel from "./templates.js";
+import { withChildren } from "./helpers/withChildren.js";
 
 const CommTypesSchema = new mongoose.Schema(
   {
@@ -10,9 +11,9 @@ const CommTypesSchema = new mongoose.Schema(
     },
   },
   {
-    methods: {
-      getTemplates() {
-        return TemplatesModel.find({ commType: this._id });
+    query: {
+      async withTemplates() {
+        return withChildren(TemplatesModel, "commType", "templates", this);
       },
     },
   }

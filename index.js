@@ -4,7 +4,6 @@ import "dotenv/config";
 import connect from "./db/connect.js";
 
 import CommTypesModel from "./models/comm-types.js";
-
 const app = express();
 
 connect().catch((e) => console.log(e));
@@ -21,11 +20,8 @@ app.get("/", async (req, res) => {
 });
 app.get("/types/:id", async (req, res) => {
   try {
-    const type = await CommTypesModel.findById(req.params.id);
-    console.log("type", type);
-    const templates = await type.getTemplates();
-    console.log("templates", templates);
-    res.send({ ...type._doc, templates });
+    const type = await CommTypesModel.findById(req.params.id).withTemplates();
+    res.send(type);
   } catch (e) {
     console.log(e);
   }
